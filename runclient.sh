@@ -29,8 +29,8 @@
 DRIVER_LOCATION="$HOME/acmeair/acmeair-driver"
 
 # Customize NUMA affinity used for jmeter process (or remove if you don't want it)
-DRIVER_AFFINITY="numactl --cpunodebind=1 --membind=1"
+DRIVER_AFFINITY="numactl --cpunodebind=0 --membind=0"
 
 SCRIPT_DIR="${DRIVER_LOCATION}/acmeair-jmeter/scripts"
-${DRIVER_AFFINITY} jmeter -n -t ${SCRIPT_DIR}/AcmeAir.jmx -S ${SCRIPT_DIR}/system.properties -q ${SCRIPT_DIR}/user.properties -j AcmeAir1.log -l AcmeAir1.jtl
+${DRIVER_AFFINITY} jmeter -n -t ${SCRIPT_DIR}/AcmeAir.jmx -S ${SCRIPT_DIR}/system.properties -q ${SCRIPT_DIR}/user.properties -j AcmeAir1.log -l AcmeAir1.jtl $*
 
