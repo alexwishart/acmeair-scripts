@@ -9,7 +9,7 @@ The default paths in these scripts and examples below assume you will be working
 - Get MongoDB v3, install locally.
 - Edit `mongo_ramdisk.sh` and adjust `MONGO_ROOT` to the location of your Mongo install.
 - Adjust (or remove) `DB_AFFINITY` as appropriate to suit your system.
-- Run `mongo_ramdisk.sh start` which will create a ramdisk and start MongoDB with a blank database on it.
+- Run `mongo_ramdisk.sh start` which will create a ramdisk and start MongoDB with a blank database on it.  (Note, this requires `sudo` permissions for creating the ramdisk)
 
 Other commands for `mongo_ramdisk.sh`: stop the database with `stop`, check if it's running with `status`, or get a MongoDB shell with `shell`.
 
