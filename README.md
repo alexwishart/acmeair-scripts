@@ -35,7 +35,20 @@ Run `loaddb-nodejs.sh`, which will start the Node.js implementation, then access
 
 Between runs, you can quickly reset the database back to a pristine state by running `resetdb.sh`, which will run `mongo_ramdisk.sh stop`, `start` and `loaddb-nodejs.sh` for you.
 
+### Set up the driver
+
+git clone https://github.com/djones6/acmeair-driver.git
+(my fork parameterizes the values in the AcmeAir.jmx driver script)
+
+Follow the JMeter installation instructions: https://github.com/djones6/acmeair-driver/blob/master/acmeair-jmeter/README.md
+
+Ensure you customize the `user.properties` file (in particular, give CONTEXT_ROOT an empty value and adjust the THREADS, RAMPUP, DURATION, DELAY etc for your needs).
+
+You can get more frequent command-line throughput summaries by reducing the value of `summariser.interval` (the minimum interval supported by JMeter is 6 seconds).
+
 ### Measuring Node.js
 
 `runnode.sh` (in one terminal)
 `runclient.sh` (in another terminal)
+
+- customize the runclient.sh script appropriately for your JMeter installation and the location of your properties files.
