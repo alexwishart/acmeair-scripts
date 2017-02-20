@@ -32,6 +32,9 @@
 #
 # Set DB_AFFINITY (below) to something appropriate for your machine, or remove
 # it if your machine is not NUMA (or you don't want affinity).
+#
+# If you want MongoDB to be remotely accessible, specify additional adapters
+# (by IP address) in a comma-separated list in DB_ADAPTERS.
 # 
 
 DBNAME="acmeair"
@@ -43,6 +46,7 @@ LOGFILE="${MOUNTPOINT}/mongod.log"
 PIDFILE="${MOUNTPOINT}/mongod.pid"
 DB_PORT="27017"
 DB_AFFINITY="numactl --cpunodebind=1 --membind=1"
+DB_ADAPTERS="127.0.0.1"
 
 function start {
   if [ -d "${DB_DIR}" ]; then
@@ -67,7 +71,7 @@ function start {
 
   # Create database
   mkdir ${DB_DIR}
-  ${DB_AFFINITY} ${MONGO_ROOT}/bin/mongod --dbpath ${DB_DIR} --logpath ${LOGFILE} --pidfilepath ${PIDFILE} --port ${DB_PORT} --nojournal --fork
+  ${DB_AFFINITY} ${MONGO_ROOT}/bin/mongod --dbpath ${DB_DIR} --logpath ${LOGFILE} --pidfilepath ${PIDFILE} --port ${DB_PORT} --bind_ip ${DB_ADAPTERS} --nojournal --fork
   if [ $? -ne 0 ]; then
     echo "Error - could not start mongod"
     exit $?
