@@ -9,5 +9,5 @@ ssh $DB_HOST -t "~/acmeair/acmeair-scripts/resetdb.sh"
 
 echo "Starting Swift implementation"
 cd ~/acmeair/acmeair-swift
-exec .build/release/Acmeair
+exec .build/release/Server
 
